@@ -31,4 +31,6 @@ public class CompetencesController {
     public void deleteById(@PathVariable String id) {
         competencesService.deleteById(id);
     }
+
+
 }
