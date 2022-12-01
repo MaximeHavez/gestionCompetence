@@ -1,5 +1,7 @@
 ## PROJET COMPETENCES
 
+Auteur : Maxime HAVEZ
+
 # Description
 
 Cette application à pour but de gérer les compétences et leur niveau 

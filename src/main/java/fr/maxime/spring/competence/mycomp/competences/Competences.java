@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class Competences {
 
+    private String id;
     private String nom;
 
     private String description;

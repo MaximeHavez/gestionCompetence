@@ -1,7 +1,9 @@
 package fr.maxime.spring.competence.mycomp.competences;
 
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+@RestController
 public class CompetencesController {
 
     private final CompetencesServiceImpl competencesService;
@@ -10,19 +12,23 @@ public class CompetencesController {
         this.competencesService = competencesService;
     }
 
+    @GetMapping("")
     public List<Competences> findAll() {
         return competencesService.findAll();
     }
 
+    @PostMapping("")
     public Competences save(Competences entity) {
         return competencesService.save(entity);
     }
 
-    public Competences findById(String id) {
+    @GetMapping("{id}")
+    public Competences findById(@PathVariable String id) {
         return competencesService.findById(id);
     }
 
-    public void deleteById(String id) {
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable String id) {
         competencesService.deleteById(id);
     }
 }
