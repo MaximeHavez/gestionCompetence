@@ -18,7 +18,7 @@ public class CompetencesController {
     }
 
     @PostMapping("")
-    public Competences save(Competences entity) {
+    public Competences save(@RequestBody Competences entity) {
         return competencesService.save(entity);
     }
 

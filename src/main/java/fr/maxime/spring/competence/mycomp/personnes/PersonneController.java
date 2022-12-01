@@ -21,17 +21,17 @@ public class PersonneController {
     }
 
     @PostMapping("")
-    public Personne save(Personne entity) {
+    public Personne save(@RequestBody Personne entity) {
         return personneService.save(entity);
     }
 
     @GetMapping("{id}")
-    public Personne findById(String id) {
+    public Personne findById(@PathVariable String id) {
         return personneService.findById(id);
     }
 
     @DeleteMapping("{id}")
-    public void deleteById(String id) {
+    public void deleteById(@PathVariable String id) {
         personneService.deleteById(id);
     }
 }
