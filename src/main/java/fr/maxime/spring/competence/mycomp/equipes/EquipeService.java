@@ -1,5 +1,8 @@
 package fr.maxime.spring.competence.mycomp.equipes;
 
+import fr.maxime.spring.competence.mycomp.personnes.Personne;
+import fr.maxime.spring.competence.mycomp.personnes.dto.PersonneCompetenceMaximum;
+
 import java.util.List;
 
 public interface EquipeService {
@@ -20,4 +23,6 @@ public interface EquipeService {
     Equipe ajoutMembre(String idEquipe, String idMembre);
 
     Equipe suppressionMembre(String idEquipe, String idMembre);
+
+    List<PersonneCompetenceMaximum> trouverPersonneCompetenceMaximum(String IdEquipe);
 }

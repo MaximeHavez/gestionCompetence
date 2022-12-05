@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
+@CrossOrigin
+@RequestMapping("/competences")
 public class CompetencesController {
 
     private final CompetencesServiceImpl competencesService;

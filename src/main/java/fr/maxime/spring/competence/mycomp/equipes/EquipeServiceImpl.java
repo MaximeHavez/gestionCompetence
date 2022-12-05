@@ -1,12 +1,16 @@
 package fr.maxime.spring.competence.mycomp.equipes;
 
+import fr.maxime.spring.competence.mycomp.personnes.NiveauCompetences;
 import fr.maxime.spring.competence.mycomp.personnes.Personne;
 import fr.maxime.spring.competence.mycomp.personnes.PersonneService;
+import fr.maxime.spring.competence.mycomp.personnes.dto.PersonneCompetenceMaximum;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EquipeServiceImpl implements EquipeService {
@@ -66,6 +70,26 @@ public class EquipeServiceImpl implements EquipeService {
         Equipe equipe = this.findById(idEquipe);
         equipe.getMembres().removeIf(membre -> membre.getId().equals(idMembre));
         return this.save(equipe);
+    }
+
+    @Override
+    public List<PersonneCompetenceMaximum> trouverPersonneCompetenceMaximum(String IdEquipe) {
+        Equipe equipe = this.findById(IdEquipe);
+        List<PersonneCompetenceMaximum> result = new ArrayList<>();
+        for (Personne personne : equipe.getMembres()){
+            Optional<NiveauCompetences> niveauCompetences = personne.getCompetences().stream().reduce((comp1, comp2)->{
+                return comp1.getNiveau() > comp2.getNiveau() ? comp1 : comp2;
+            });
+            List<NiveauCompetences> niveauCompetences1 = new ArrayList<>();
+
+            result.add(new PersonneCompetenceMaximum(
+                    personne.getId(),
+                    personne.getNom(),
+                    personne.getPrenom(),
+                    niveauCompetences.get()
+            ));
+        }
+        return result;
     }
 
 
